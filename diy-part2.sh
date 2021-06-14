@@ -24,15 +24,23 @@ sed -i "/uci commit system/i\uci set system.@system[0].hostname='FlyStation'" $Z
 
 #sed -i 's/PATCHVER:=5.4/PATCHVER:=4.19/g' target/linux/x86/Makefile                              # 修改内核版本为4.19
 
+# Add luci-app-ssr-plus增加科学插件
+pushd package/lean
+git clone --depth=1 https://github.com/fw876/helloworld
+cat > helloworld/luci-app-ssr-plus/root/etc/ssrplus/black.list << EOF
+services.googleapis.cn
+googleapis.cn
+heroku.com
+githubusercontent.com 
+EOF
+git clone --depth=1 https://github.com/gztingting/luci-theme-argon-dark-mod.git
+svn co https://github.com/Lienol/openwrt-package/trunk/luci-app-fileassistant
+popd
 
-# 修改插件名字
-#sed -i 's/"aMule设置"/"电驴下载"/g' `grep "aMule设置" -rl ./`
-#sed -i 's/"网络存储"/"存储"/g' `grep "网络存储" -rl ./`
-#sed -i 's/"Turbo ACC 网络加速"/"网络加速"/g' `grep "Turbo ACC 网络加速" -rl ./`
-#sed -i 's/"实时流量监测"/"流量"/g' `grep "实时流量监测" -rl ./`
-#sed -i 's/"KMS 服务器"/"KMS激活"/g' `grep "KMS 服务器" -rl ./`
-#sed -i 's/"TTYD 终端"/"命令窗"/g' `grep "TTYD 终端" -rl ./`
-#sed -i 's/"USB 打印服务器"/"打印服务"/g' `grep "USB 打印服务器" -rl ./`
-#sed -i 's/"Web 管理"/"Web"/g' `grep "Web 管理" -rl ./`
-#sed -i 's/"管理权"/"改密码"/g' `grep "管理权" -rl ./`
-#sed -i 's/"带宽监控"/"监控"/g' `grep "带宽监控" -rl ./`
+# Docker
+svn co https://github.com/lisaac/luci-app-dockerman/trunk/applications/luci-app-dockerman package/luci-app-dockerman
+git clone --depth=1 https://github.com/lisaac/luci-lib-docker
+if [ -e feeds/packages/utils/docker-ce ];then
+	sed -i '/dockerd/d' package/luci-app-dockerman/Makefile
+	sed -i 's/+docker/+docker-ce/g' package/luci-app-dockerman/Makefile
+fi
