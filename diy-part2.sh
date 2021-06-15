@@ -23,24 +23,3 @@ sed -i "/uci commit system/i\uci set system.@system[0].hostname='FlyStation'" $Z
 #sed -i '/CYXluq4wUazHjmCDBCqXF/d' $ZZZ                                                            # 设置密码为空
 
 #sed -i 's/PATCHVER:=5.4/PATCHVER:=4.19/g' target/linux/x86/Makefile                              # 修改内核版本为4.19
-
-# Add luci-app-ssr-plus增加科学插件
-pushd package/lean
-git clone --depth=1 https://github.com/fw876/helloworld
-cat > helloworld/luci-app-ssr-plus/root/etc/ssrplus/black.list << EOF
-services.googleapis.cn
-googleapis.cn
-heroku.com
-githubusercontent.com 
-EOF
-git clone --depth=1 https://github.com/gztingting/luci-theme-argon-dark-mod.git
-svn co https://github.com/Lienol/openwrt-package/trunk/luci-app-fileassistant
-popd
-
-# Docker
-svn co https://github.com/lisaac/luci-app-dockerman/trunk/applications/luci-app-dockerman package/luci-app-dockerman
-git clone --depth=1 https://github.com/lisaac/luci-lib-docker
-if [ -e feeds/packages/utils/docker-ce ];then
-	sed -i '/dockerd/d' package/luci-app-dockerman/Makefile
-	sed -i 's/+docker/+docker-ce/g' package/luci-app-dockerman/Makefile
-fi
