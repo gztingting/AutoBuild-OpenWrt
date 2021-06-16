@@ -14,3 +14,12 @@
 
 # Add a feed source
 #sed -i '$a src-git lienol https://github.com/Lienol/openwrt-package' feeds.conf.default
+
+pushd package/lean
+git clone https://github.com/gztingting/luci-theme-argon-dark-mod
+svn co https://github.com/Lienol/openwrt-package/trunk/luci-app-fileassistant
+svn co https://github.com/Lienol/openwrt-package/trunk/luci-app-filebrowser
+rm -rf luci-lib-docker
+svn co https://github.com/lisaac/luci-app-dockerman/trunk/applications/luci-app-dockerman
+git clone https://github.com/lisaac/luci-lib-docker
+popd
