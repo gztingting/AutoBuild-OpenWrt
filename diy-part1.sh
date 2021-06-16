@@ -19,6 +19,8 @@ pushd package/lean
 git clone https://github.com/gztingting/luci-theme-argon-dark-mod
 svn co https://github.com/Lienol/openwrt-package/trunk/luci-app-fileassistant
 svn co https://github.com/Lienol/openwrt-package/trunk/luci-app-filebrowser
+git clone https://github.com/sirpdboy/luci-app-autotimeset package/luci-app-autotimeset
+git clone https://github.com/fw876/helloworld
 rm -rf luci-lib-docker
 svn co https://github.com/lisaac/luci-app-dockerman/trunk/applications/luci-app-dockerman
 git clone https://github.com/lisaac/luci-lib-docker
