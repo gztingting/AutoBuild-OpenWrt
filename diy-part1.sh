@@ -23,6 +23,8 @@ svn co https://github.com/Lienol/openwrt-package/trunk/luci-app-filebrowser
 git clone https://github.com/sirpdboy/luci-app-autotimeset
 git clone https://github.com/fw876/helloworld
 rm -rf luci-lib-docker
+rm -rf luci-app-diskman
 svn co https://github.com/lisaac/luci-app-dockerman/trunk/applications/luci-app-dockerman
+svn co https://github.com/lisaac/luci-app-dockerman/trunk/applications/luci-app-diskman
 git clone https://github.com/lisaac/luci-lib-docker
 popd
