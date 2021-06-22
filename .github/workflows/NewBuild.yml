@@ -9,7 +9,7 @@
 # Tingting Modified
 #
 
-name: Build OpenWrt New
+name: Build OpenWrt Use ssh with exit
 
 on:
   repository_dispatch:
