@@ -18,7 +18,7 @@ on:
       ssh:
         description: 'SSH connection to Actions'
         required: false
-        default: 'ssh'
+        default: 'ssh-action'
 
 env:
   REPO_URL: https://github.com/coolsnowwolf/lede
@@ -143,7 +143,7 @@ jobs:
       uses: actions/upload-artifact@v2
       if: steps.organize.outputs.status == 'success' && !cancelled()
       with:
-        name: .config_${{ env.DEVICE_NAME }}${{ env.FILE_DATE }}
+        name: .config_${{ env.FILE_DATE }}
         path: openwrt/bin/config
 
     - name: Upload firmware directory
