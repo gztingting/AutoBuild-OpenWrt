@@ -12,7 +12,6 @@
 name: Build OpenWrt Use ssh with exit
 
 on:
-  repository_dispatch:
   workflow_dispatch:
     inputs:
       ssh:
