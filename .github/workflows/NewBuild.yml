@@ -139,14 +139,14 @@ jobs:
         echo "FIRMWARE=$PWD" >> $GITHUB_ENV
         echo "::set-output name=status::success"
 
-    - name: Upload .config to Github acionts artifact
+    - name: Upload .config
       uses: actions/upload-artifact@v2
       if: steps.organize.outputs.status == 'success' && !cancelled()
       with:
         name: ${{ env.FILE_DATE }}.config
         path: openwrt/bin/config/config.buildinfo
 
-    - name: Upload .gz firmware to Github acionts artifact
+    - name: Upload .gz firmware
       uses: actions/upload-artifact@main
       if: steps.organize.outputs.status == 'success' && !cancelled()
       with:
@@ -155,7 +155,7 @@ jobs:
 
     - name: Messaging bot
       if: steps.organize.outputs.status == 'success' && !cancelled()
-      run: curl -k --data chat_id="${{ secrets.TELEGRAM_CHAT_ID }}" --data "text=Mission Completed！💐" "https://api.telegram.org/bot${{ secrets.TELEGRAM_BOT_TOKEN }}/sendMessage"
+      run: curl -k --data chat_id="${{ secrets.TELEGRAM_CHAT_ID }}" --data "text=Mission Completed at ${{ env.FILE_DATE }}！💐" "https://api.telegram.org/bot${{ secrets.TELEGRAM_BOT_TOKEN }}/sendMessage"
           
     - name: Upload firmware to cowtransfer
       id: cowtransfer
