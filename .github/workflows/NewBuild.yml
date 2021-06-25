@@ -85,7 +85,7 @@ jobs:
 
     - name: SSH connection to Actions
       uses: gztingting/debugger-action@master
-      if: (github.event.inputs.ssh == 'true' && github.event.inputs.ssh  != 'ssh-action') || contains(github.event.action, 'ssh')
+      if: (github.event.inputs.ssh == 'ssh' && github.event.inputs.ssh  != 'ssh-action') || contains(github.event.action, 'ssh')
       env:
         TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
         TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
