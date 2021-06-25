@@ -12,11 +12,13 @@
 name: Use ssh with exit trigger
 
 on:
-    workflow_dispatch:
+  repository_dispatch:
+  workflow_dispatch:
+    inputs:
       ssh:
         description: 'SSH connection to Actions'
         required: false
-        default: 'ssh-action'
+        default: 'true'
 
 env:
   REPO_URL: https://github.com/coolsnowwolf/lede
@@ -84,7 +86,7 @@ jobs:
 
     - name: SSH connection to Actions
       uses: gztingting/debugger-action@master
-      if: (github.event.inputs.ssh == 'ssh' && github.event.inputs.ssh  != 'ssh-action') || contains(github.event.action, 'ssh')
+      if: (github.event.inputs.ssh == 'true' && github.event.inputs.ssh  != 'ssh-action') || contains(github.event.action, 'ssh')
       env:
         TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
         TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
