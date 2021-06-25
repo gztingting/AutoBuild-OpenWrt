@@ -12,6 +12,7 @@
 name: Use ssh with exit trigger
 
 on:
+  repository_dispatch:
   workflow_dispatch:
     inputs:
       ssh:
