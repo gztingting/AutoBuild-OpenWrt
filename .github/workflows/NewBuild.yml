@@ -13,7 +13,6 @@ name: Use ssh with exit trigger
 
 on:
     workflow_dispatch:
-    inputs:
       ssh:
         description: 'SSH connection to Actions'
         required: false
@@ -133,7 +132,7 @@ jobs:
         find -name "*sha256sums*" | xargs -i rm -rf {}
         find -name "*manifest*" | xargs -i rm -rf {}
         find -name "*kernel.bin*" | xargs -i rm -rf {}
-        find -name "*rootfs.img.gz*" | xargs -i rm -rf {}
+#        find -name "*rootfs.img.gz*" | xargs -i rm -rf {}
         find -name "config.buildinfo" | xargs -i rm -rf {}
         rm -rf packages
         echo "FIRMWARE=$PWD" >> $GITHUB_ENV
