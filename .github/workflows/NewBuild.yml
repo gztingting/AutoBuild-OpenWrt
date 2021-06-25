@@ -12,13 +12,12 @@
 name: Use ssh with exit trigger
 
 on:
-  repository_dispatch:
-  workflow_dispatch:
+   workflow_dispatch:
     inputs:
       ssh:
         description: 'SSH connection to Actions'
         required: false
-        default: 'true'
+        default: 'ssh'
 
 env:
   REPO_URL: https://github.com/coolsnowwolf/lede
