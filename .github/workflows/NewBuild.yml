@@ -80,19 +80,19 @@ jobs:
         [ -e files ] && mv files openwrt/files
         [ -e $CONFIG_FILE ] && mv $CONFIG_FILE openwrt/.config
         chmod +x $DIY_P2_SH
+           cp -Rf ./diy/banner openwrt/package/base-files/files/etc/
+            mkdir -p openwrt/package/base-files/files/etc/config
+            cp -RF ./diy/aria2 openwrt/package/base-files/files/etc/config
+            cp -RF ./diy/baidupcs-web openwrt/package/base-files/files/etc/config
+            cp -RF ./diy/dockerd openwrt/package/base-files/files/etc/config
+            cp -RF ./diy/dockerman openwrt/package/base-files/files/etc/config
+            cp -RF ./diy/flowoffload openwrt/package/base-files/files/etc/config
+            cp -RF ./diy/frp openwrt/package/base-files/files/etc/config
+            cp -RF ./diy/network openwrt/package/base-files/files/etc/config
+            cp -RF ./diy/qbittorrent openwrt/package/base-files/files/etc/config
+            cp -RF ./diy/samba openwrt/package/base-files/files/etc/config
+            cp -RF ./diy/sfe openwrt/package/base-files/files/etc/config
         cd openwrt
-            cp -Rf ./diy/banner ./package/base-files/files/etc/
-            mkdir -p ./package/base-files/files/etc/config
-            cp -RF ./diy/aria2 ./package/base-files/files/etc/config
-            cp -RF ./diy/baidupcs-web ./package/base-files/files/etc/config
-            cp -RF ./diy/dockerd ./package/base-files/files/etc/config
-            cp -RF ./diy/dockerman ./package/base-files/files/etc/config
-            cp -RF ./diy/flowoffload ./package/base-files/files/etc/config
-            cp -RF ./diy/frp ./package/base-files/files/etc/config
-            cp -RF ./diy/network ./package/base-files/files/etc/config
-            cp -RF ./diy/qbittorrent ./package/base-files/files/etc/config
-            cp -RF ./diy/samba ./package/base-files/files/etc/config
-            cp -RF ./diy/sfe ./package/base-files/files/etc/config
         $GITHUB_WORKSPACE/$DIY_P2_SH
 
     - name: SSH connection to Actions
