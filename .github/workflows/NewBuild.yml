@@ -80,8 +80,7 @@ jobs:
         [ -e files ] && mv files openwrt/files
         [ -e $CONFIG_FILE ] && mv $CONFIG_FILE openwrt/.config
         chmod +x $DIY_P2_SH
-            cp -rf ./diy/banner openwrt/package/base-files/files/etc/
-            cp -rf ./diy/config/* openwrt/package/base-files/files/etc/
+            cp -rf ./diy/* openwrt/package/base-files/files/etc/
          cd openwrt
         $GITHUB_WORKSPACE/$DIY_P2_SH
 
