@@ -4,5 +4,5 @@ config baidupcs-web 'config'
 	option max_download_load '2'
 	option max_parallel '5'
 	option enabled '0'
-	option download_dir '/mnt/sdb2/Downloads'
+	option download_dir '/mnt/sda4/Downloads'
 
