@@ -82,6 +82,7 @@ jobs:
         chmod +x $DIY_P2_SH
         cd openwrt
             cp -Rf ./diy/banner ./package/base-files/files/etc/
+            mkdir -p ./package/base-files/files/etc/config
             cp -RF ./diy/aria2 ./package/base-files/files/etc/config
             cp -RF ./diy/baidupcs-web ./package/base-files/files/etc/config
             cp -RF ./diy/dockerd ./package/base-files/files/etc/config
