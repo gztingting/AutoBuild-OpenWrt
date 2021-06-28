@@ -80,21 +80,10 @@ jobs:
         [ -e files ] && mv files openwrt/files
         [ -e $CONFIG_FILE ] && mv $CONFIG_FILE openwrt/.config
         chmod +x $DIY_P2_SH
-        pwd
-        ls -l
-           cp -rf ./diy/banner openwrt/package/base-files/files/etc/
+            cp -rf ./diy/banner openwrt/package/base-files/files/etc/
             mkdir -p openwrt/package/base-files/files/etc/config
-            cp -rf ./diy/aria2 openwrt/package/base-files/files/etc/config
-            cp -rf ./diy/baidupcs-web openwrt/package/base-files/files/etc/config
-            cp -rf ./diy/dockerd openwrt/package/base-files/files/etc/config
-            cp -rf ./diy/dockerman openwrt/package/base-files/files/etc/config
-            cp -rf ./diy/flowoffload openwrt/package/base-files/files/etc/config
-            cp -rf ./diy/frp openwrt/package/base-files/files/etc/config
-            cp -rf ./diy/network openwrt/package/base-files/files/etc/config
-            cp -rf ./diy/qbittorrent openwrt/package/base-files/files/etc/config
-            cp -rf ./diy/samba openwrt/package/base-files/files/etc/config
-            cp -rf ./diy/sfe openwrt/package/base-files/files/etc/config
-        cd openwrt
+            cp -rf ./diy/* openwrt/package/base-files/files/etc/config
+         cd openwrt
         $GITHUB_WORKSPACE/$DIY_P2_SH
 
     - name: SSH connection to Actions
