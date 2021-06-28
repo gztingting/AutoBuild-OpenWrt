@@ -82,7 +82,7 @@ jobs:
         chmod +x $DIY_P2_SH
             cp -rf ./diy/banner openwrt/package/base-files/files/etc/
             mkdir -p openwrt/package/base-files/files/etc/config
-            cp -rf ./diy/* openwrt/package/base-files/files/etc/config
+            cp -rf ./diy/config/* openwrt/package/base-files/files/etc/config
          cd openwrt
         $GITHUB_WORKSPACE/$DIY_P2_SH
 
