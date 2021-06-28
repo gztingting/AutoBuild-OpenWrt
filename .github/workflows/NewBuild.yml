@@ -139,7 +139,7 @@ jobs:
       if: env.UPLOAD_FIRMWARE == 'true' && !cancelled()
       run: |
         cd openwrt/bin && mkdir config
-        cp -Rf targets/*/*/config.buildinfo ./config/config_${{ env.FILE_DATE2 }}.json
+        cp -Rf targets/*/*/config.buildinfo ./config/config_${{ env.FILE_DATE2 }}.txt
         cd targets/*/*
         find -name "feeds.buildinfo" | xargs -i rm -rf {}
         find -name "version.buildinfo" | xargs -i rm -rf {}
