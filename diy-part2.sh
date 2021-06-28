@@ -31,3 +31,4 @@ sed -i 's/京东签到服务/JD-DailyBonus/g' package/lean/luci-app-jd-dailybonu
 sed -i 's#V4UetPzk$CYXluq4wUazHjmCDBCqXF.:0#UHJIZWtG$UqLZWUUXnhU16w.g5U/Ep1:18462#g' $ZZZ
 
 #sed -i 's/PATCHVER:=5.4/PATCHVER:=4.19/g' target/linux/x86/Makefile                              # 修改内核版本为4.19
+chmod 755 package/lean/luci-app-autotimeset/root/etc/init.d/autotimeset
