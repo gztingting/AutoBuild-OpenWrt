@@ -27,7 +27,7 @@ sed -i 's/京东签到服务/JD-DailyBonus/g' package/lean/luci-app-jd-dailybonu
 #sed -i 's/$1$V4UetPzk$CYXluq4wUazHjmCDBCqXF.:0/$1$PhflQnJ1$yamWfH5Mphs4hXV7UXWQ21:18725/g' $ZZZ  # 替换密码（要替换密码就不能设置密码为空）
 
 #sed -i '/CYXluq4wUazHjmCDBCqXF/d' $ZZZ                                                            # 设置密码为空
-sed -i 's#V4UetPzk$CYXluq4wUazHjmCDBCqXF.:0#UHJIZWtG$UqLZWUUXnhU16w.g5U/Ep1:18462#g' $ZZZ
+sed -i "s#root::0:0:99999:7:::#root:$1$E.WtCyzS$ytUZFpkmn0ly4MeHkj02C/:18807:0:99999:7:::#g" $ZZZ
 
 #sed -i 's/PATCHVER:=5.4/PATCHVER:=4.19/g' target/linux/x86/Makefile                              # 修改内核版本为4.19
 chmod 755 package/lean/luci-app-autotimeset/root/etc/init.d/autotimeset
