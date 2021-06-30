@@ -2,14 +2,13 @@
 ZZZ="package/lean/default-settings/files/zzz-default-settings"
 # Copyright (c) 2019-2020 P3TERX <https://p3terx.com>
 #
-
-sed -i "/uci commit fstab/a\uci commit network" $ZZZ
-sed -i "/uci commit network/i\uci set network.lan.ipaddr='192.168.50.1'" $ZZZ                      # IPv4 地址(openwrt后台地址)
-sed -i "/uci commit network/i\uci set network.lan.netmask='255.255.255.0'" $ZZZ                   # IPv4 子网掩码
+#sed -i "/uci commit fstab/a\uci commit network" $ZZZ
+#sed -i "/uci commit network/i\uci set network.lan.ipaddr='192.168.50.1'" $ZZZ                      # IPv4 地址(openwrt后台地址)
+#sed -i "/uci commit network/i\uci set network.lan.netmask='255.255.255.0'" $ZZZ                   # IPv4 子网掩码
 #sed -i "/uci commit network/i\uci set network.lan.gateway='192.168.50.1'" $ZZZ                     # IPv4 网关
-sed -i "/uci commit network/i\uci set network.lan.broadcast='192.168.50.255'" $ZZZ                 # IPv4 广播
+#sed -i "/uci commit network/i\uci set network.lan.broadcast='192.168.50.255'" $ZZZ                 # IPv4 广播
 #sed -i "/uci commit network/i\uci set network.lan.dns='192.168.50.1'" $ZZZ                         # DNS(多个DNS要用空格分开)
-sed -i "/uci commit network/i\uci set network.lan.delegate='0'" $ZZZ                              # 去掉LAN口使用内置的 IPv6 管理
+#sed -i "/uci commit network/i\uci set network.lan.delegate='0'" $ZZZ                              # 去掉LAN口使用内置的 IPv6 管理
 #echo "close_dhcp" > package/base-files/files/etc/closedhcp                                        # 关闭DHCP服务
 #sed -i "/uci commit network/i\uci set network.lan.ipaddr='10.59.72.119'" $ZZZ
 #sed -i "/uci commit network/i\uci set network.lan.netmask='255.255.255.128'" $ZZZ
