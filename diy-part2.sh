@@ -2,6 +2,9 @@
 ZZZ="package/lean/default-settings/files/zzz-default-settings"
 # Copyright (c) 2019-2020 P3TERX <https://p3terx.com>
 #
+
+sed -i 's/luci.main.lang=zh_cn/luci.main.lang=en_us/g' $ZZZ                                         # 修改为英文系统
+
 #sed -i "/uci commit fstab/a\uci commit network" $ZZZ
 #sed -i "/uci commit network/i\uci set network.lan.ipaddr='192.168.50.1'" $ZZZ                      # IPv4 地址(openwrt后台地址)
 #sed -i "/uci commit network/i\uci set network.lan.netmask='255.255.255.0'" $ZZZ                   # IPv4 子网掩码
@@ -27,7 +30,7 @@ sed -i 's/京东签到服务/JD-DailyBonus/g' package/lean/luci-app-jd-dailybonu
 #sed -i 's/$1$V4UetPzk$CYXluq4wUazHjmCDBCqXF.:0/$1$PhflQnJ1$yamWfH5Mphs4hXV7UXWQ21:18725/g' $ZZZ  # 替换密码（要替换密码就不能设置密码为空）
 
 #sed -i '/CYXluq4wUazHjmCDBCqXF/d' $ZZZ                                                            # 设置密码为空
-sed -i "s#root::0:0:99999:7:::#root:$1$E.WtCyzS$ytUZFpkmn0ly4MeHkj02C/:18807:0:99999:7:::#g" $ZZZ
+sed -i "s#root:$1$V4UetPzk$CYXluq4wUazHjmCDBCqXF.:0:0:99999:7:::#root:$1$E.WtCyzS$ytUZFpkmn0ly4MeHkj02C/:18807:0:99999:7:::#g" $ZZZ
 
 #sed -i 's/PATCHVER:=5.4/PATCHVER:=4.19/g' target/linux/x86/Makefile                              # 修改内核版本为4.19
 chmod 755 package/lean/luci-app-autotimeset/root/etc/init.d/autotimeset
