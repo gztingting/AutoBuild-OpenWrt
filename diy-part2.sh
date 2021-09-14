@@ -28,4 +28,14 @@ sed -i "s/OpenWrt /FlyStation $(TZ=UTC-8 date "+%Y.%m.%d") @ OpenWrt /g" $ZZZ   
 sed -i "/uci commit system/i\uci set system.@system[0].hostname='FlyStation'" $ZZZ            # 修改主机名称为FlyStation
 sed -i 's/京东签到服务/JD-DailyBonus/g' package/lean/luci-app-jd-dailybonus/luasrc/controller/jd-dailybonus.lua #修改中文为英文
 
+sed -i "/CONFIG_DUMMY_CONSOLE=y/a\CONFIG_64BIT=y" target/linux/x86/config-5.10 #增加i915显卡
+sed -i "/CONFIG_64BIT=y/i\CONFIG_DRM=y" target/linux/x86/config-5.10
+sed -i "/CONFIG_64BIT=y/i\CONFIG_DRM_I915=y" target/linux/x86/config-5.10
+sed -i "/CONFIG_64BIT=y/i\CONFIG_DRM_I915_GVT=y" target/linux/x86/config-5.10
+
+sed -i "/CONFIG_DNOTIFY=y/a\CONFIG_64BIT=y" target/linux/x86/config-5.4 #增加i915显卡
+sed -i "/CONFIG_64BIT=y/i\CONFIG_DRM=y" target/linux/x86/config-5.4
+sed -i "/CONFIG_64BIT=y/i\CONFIG_DRM_I915=y" target/linux/x86/config-5.4
+sed -i "/CONFIG_64BIT=y/i\CONFIG_DRM_I915_GVT=y" target/linux/x86/config-5.4
+
 chmod 755 package/lean/luci-app-autotimeset/root/etc/init.d/autotimeset
