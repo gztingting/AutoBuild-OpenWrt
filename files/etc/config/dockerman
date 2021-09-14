@@ -8,5 +8,5 @@ config section 'local'
 	option daemon_log_level 'warn'
 	list ac_allowed_interface 'br-lan'
 	option remote_port '2375'
-	option daemon_data_root '/mnt/sdc3/Docker'
+	option daemon_data_root '/mnt/sda3/Docker'
 
