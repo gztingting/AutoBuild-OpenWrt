@@ -9,7 +9,7 @@
 # Tingting Modified
 #
 
-name: Thinkstation
+name: Flystation
 
 on:
    workflow_dispatch:
