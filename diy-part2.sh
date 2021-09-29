@@ -5,13 +5,13 @@ ZZZ="package/lean/default-settings/files/zzz-default-settings"
 
 sed -i 's/luci.main.lang=zh_cn/luci.main.lang=en_us/g' $ZZZ                                         # 修改为英文系统
 
-#sed -i "/uci commit fstab/a\uci commit network" $ZZZ
-#sed -i "/uci commit network/i\uci set network.lan.ipaddr='192.168.50.1'" $ZZZ                      # IPv4 地址(openwrt后台地址)
-#sed -i "/uci commit network/i\uci set network.lan.netmask='255.255.255.0'" $ZZZ                   # IPv4 子网掩码
-#sed -i "/uci commit network/i\uci set network.lan.gateway='192.168.50.1'" $ZZZ                     # IPv4 网关
-#sed -i "/uci commit network/i\uci set network.lan.broadcast='192.168.50.255'" $ZZZ                 # IPv4 广播
-#sed -i "/uci commit network/i\uci set network.lan.dns='192.168.50.1'" $ZZZ                         # DNS(多个DNS要用空格分开)
-#sed -i "/uci commit network/i\uci set network.lan.delegate='0'" $ZZZ                              # 去掉LAN口使用内置的 IPv6 管理
+sed -i "/uci commit fstab/a\uci commit network" $ZZZ
+sed -i "/uci commit network/i\uci set network.lan.ipaddr='192.168.50.254'" $ZZZ                      # IPv4 地址(openwrt后台地址)
+sed -i "/uci commit network/i\uci set network.lan.netmask='255.255.255.0'" $ZZZ                   # IPv4 子网掩码
+sed -i "/uci commit network/i\uci set network.lan.gateway='192.168.50.1'" $ZZZ                     # IPv4 网关
+sed -i "/uci commit network/i\uci set network.lan.broadcast='192.168.50.255'" $ZZZ                 # IPv4 广播
+sed -i "/uci commit network/i\uci set network.lan.dns='192.168.50.1'" $ZZZ                         # DNS(多个DNS要用空格分开)
+sed -i "/uci commit network/i\uci set network.lan.delegate='0'" $ZZZ                              # 去掉LAN口使用内置的 IPv6 管理
 #echo "close_dhcp" > package/base-files/files/etc/closedhcp                                        # 关闭DHCP服务
 #sed -i "/uci commit network/i\uci set network.lan.ipaddr='10.59.72.119'" $ZZZ
 #sed -i "/uci commit network/i\uci set network.lan.netmask='255.255.255.128'" $ZZZ
@@ -28,14 +28,14 @@ sed -i "s/OpenWrt /FlyStation $(TZ=UTC-8 date "+%Y.%m.%d") @ OpenWrt /g" $ZZZ   
 sed -i "/uci commit system/i\uci set system.@system[0].hostname='FlyStation'" $ZZZ            # 修改主机名称为FlyStation
 sed -i 's/京东签到服务/JD-DailyBonus/g' package/lean/luci-app-jd-dailybonus/luasrc/controller/jd-dailybonus.lua #修改中文为英文
 
-sed -i "/CONFIG_DUMMY_CONSOLE=y/a\CONFIG_64BIT=y" target/linux/x86/config-5.10 #增加i915显卡
-sed -i "/CONFIG_64BIT=y/i\CONFIG_DRM=y" target/linux/x86/config-5.10
-sed -i "/CONFIG_64BIT=y/i\CONFIG_DRM_I915=y" target/linux/x86/config-5.10
-sed -i "/CONFIG_64BIT=y/i\CONFIG_DRM_I915_GVT=y" target/linux/x86/config-5.10
+#sed -i "/CONFIG_DUMMY_CONSOLE=y/a\CONFIG_64BIT=y" target/linux/x86/config-5.10 #增加i915显卡
+#sed -i "/CONFIG_64BIT=y/i\CONFIG_DRM=y" target/linux/x86/config-5.10
+#sed -i "/CONFIG_64BIT=y/i\CONFIG_DRM_I915=y" target/linux/x86/config-5.10
+#sed -i "/CONFIG_64BIT=y/i\CONFIG_DRM_I915_GVT=y" target/linux/x86/config-5.10
 
-sed -i "/CONFIG_DNOTIFY=y/a\CONFIG_64BIT=y" target/linux/x86/config-5.4 #增加i915显卡
-sed -i "/CONFIG_64BIT=y/i\CONFIG_DRM=y" target/linux/x86/config-5.4
-sed -i "/CONFIG_64BIT=y/i\CONFIG_DRM_I915=y" target/linux/x86/config-5.4
-sed -i "/CONFIG_64BIT=y/i\CONFIG_DRM_I915_GVT=y" target/linux/x86/config-5.4
+#sed -i "/CONFIG_DNOTIFY=y/a\CONFIG_64BIT=y" target/linux/x86/config-5.4 #增加i915显卡
+#sed -i "/CONFIG_64BIT=y/i\CONFIG_DRM=y" target/linux/x86/config-5.4
+#sed -i "/CONFIG_64BIT=y/i\CONFIG_DRM_I915=y" target/linux/x86/config-5.4
+#sed -i "/CONFIG_64BIT=y/i\CONFIG_DRM_I915_GVT=y" target/linux/x86/config-5.4
 
 chmod 755 package/lean/luci-app-autotimeset/root/etc/init.d/autotimeset
