@@ -7,6 +7,9 @@
 # 如果你的OP是当主路由的话，网关、DNS、广播都不需要，代码前面加 # 注释掉，只保留后台地址和子网掩码就可以
 # 如果你有编译ipv6的话，‘去掉LAN口使用内置的 IPv6 管理’代码前面也加 # 注释掉
 
+git clone https://github.com/gztingting/luci-theme-argon-dark-mod package/luci-theme-argon-dark-mod
+git clone https://github.com/sirpdboy/luci-app-autotimeset package/luci-app-autotimeset
+
 cat >$NETIP <<-EOF
 uci set network.lan.ipaddr='192.168.50.254'                                    # IPv4 地址(openwrt后台地址)
 uci set network.lan.netmask='255.255.255.0'                                 # IPv4 子网掩码
