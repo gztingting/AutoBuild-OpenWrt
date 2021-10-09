@@ -36,3 +36,5 @@ amlogic_model=s905d
 amlogic_kernel=5.10.70
 rootfs_size=768
 EOF
+
+chmod 755 package/luci-app-autotimeset/root/etc/init.d/autotimeset
