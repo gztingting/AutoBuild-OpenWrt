@@ -308,7 +308,14 @@ jobs:
         overwrite: true
         file_glob: true
 
-    - name: Messaging bot end
+    - name: Telgram Messaging bot end
       if: steps.organizer.outputs.status == 'success' && !cancelled()
       run: curl -k --data chat_id="${{ secrets.TELEGRAM_CHAT_ID }}" --data "text=Mission Completed at ${{ env.FILE_DATE }}！💐" "https://api.telegram.org/bot${{ secrets.TELEGRAM_BOT_TOKEN }}/sendMessage"
       
+    - name: Wechat Messaging bot
+      uses: emon100/Action-Serverchan@v2
+      if: steps.organizer.outputs.status == 'success' && env.SERVERCHAN_SCKEY == 'true' && !cancelled()
+      with:
+        SCKEY: ${{ secrets.SCKEY }}
+        text: Mission Completed at ${{ env.FILE_DATE }}！
+        desp: 我亲爱的主人您使用${{matrix.target}}文件夹编译的[ ${{ env.CODE }}-${{ env.TARGET_PROFILE }} ]固件(${{ env.CangKu }}仓库的#${{ env.Run_number }}号)顺利编译完成了！
