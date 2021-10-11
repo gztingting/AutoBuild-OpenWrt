@@ -313,6 +313,6 @@ jobs:
         file_glob: true
 
     - name: Messaging bot
-      if: steps.organize.outputs.status == 'success' && !cancelled()
+      if: steps.organizer.outputs.status == 'success' && !cancelled()
       run: curl -k --data chat_id="${{ secrets.TELEGRAM_CHAT_ID }}" --data "text=Mission Completed at ${{ env.FILE_DATE }}！💐" "https://api.telegram.org/bot${{ secrets.TELEGRAM_BOT_TOKEN }}/sendMessage"
          
