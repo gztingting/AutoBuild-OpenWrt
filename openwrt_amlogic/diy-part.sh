@@ -8,7 +8,7 @@
 # 如果你有编译ipv6的话，‘去掉LAN口使用内置的 IPv6 管理’代码前面也加 # 注释掉
 
 git clone https://github.com/gztingting/luci-theme-argon-dark-mod package/luci-theme-argon-dark-mod
-git clone https://github.com/sirpdboy/luci-app-autotimeset package/luci-app-autotimeset
+#git clone https://github.com/sirpdboy/luci-app-autotimeset package/luci-app-autotimeset
 
 cat >$NETIP <<-EOF
 uci set network.lan.ipaddr='192.168.50.254'                                    # IPv4 地址(openwrt后台地址)
@@ -37,4 +37,4 @@ amlogic_kernel=5.10.70
 rootfs_size=768
 EOF
 
-chmod 755 package/luci-app-autotimeset/root/etc/init.d/autotimeset
+#chmod 755 package/luci-app-autotimeset/root/etc/init.d/autotimeset
