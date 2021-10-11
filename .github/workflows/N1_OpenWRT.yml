@@ -1,6 +1,6 @@
 #
 #
-# 感谢p3terx大神的一键编译脚本
+# This is free software, licensed under the MIT License.
 # 
 # Copyright (C) 2019 P3TERX <https://p3terx.com>
 # <https://github.com/P3TERX/Actions-OpenWrt.git>
@@ -10,13 +10,9 @@ on:
   workflow_dispatch:
     inputs:
       ssh:
-        description: 'SSH远程'
+        description: 'SSH connect'
         required: false
         default: 'ssh-actions'
-
-# 定时触发开始编译(把下面两个#去掉开启,时间设置请看定时编译说明)
-#  schedule:
-#   - cron: 0 16 */2 * *
 
 env:
   Github: https://github.com/${{github.repository}}
@@ -31,7 +27,7 @@ jobs:
     runs-on: ubuntu-20.04
     if: github.event.repository.owner.id == github.event.sender.id
 
-    name: 编译 "${{matrix.target}}"
+    name: Compile "${{matrix.target}}"
     strategy:
       fail-fast: false
       matrix:
@@ -40,10 +36,10 @@ jobs:
         # [Lede_source,Lienol_source,Mortal_source,openwrt_amlogic]
 
     steps:
-    - name: 准备结束
+    - name: Check out
       uses: actions/checkout@v2
 
-    - name: 读取脚本设置
+    - name: Load config
       run: |
         source "${GITHUB_WORKSPACE}/${{matrix.target}}/settings.ini"
         echo "REPO_URL=${REPO_URL}" >> $GITHUB_ENV
@@ -64,7 +60,7 @@ jobs:
         echo "CangKu=${Apidz##*/}" >> $GITHUB_ENV
         echo "Modelfile=${{matrix.target}}" >> $GITHUB_ENV 
 
-    - name: 公 告
+    - name: Attention
       run: |
         echo
         git clone --depth 1 -b main https://github.com/281677160/common build/common > /dev/null 2>&1
@@ -90,12 +86,12 @@ jobs:
           source build/common/common.sh && Diy_tongzhi
         fi
 
-    - name: 电报机器人信息通知
+    - name: Messaging bot start
       if: env.SERVERCHAN_SCKEY == 'true'
       run: |
         curl -k --data chat_id="${{ secrets.TELEGRAM_CHAT_ID }}" --data "text=🎉 主人：您正在使用【${{matrix.target}}】文件夹编译固件中(${{env.CangKu}}仓库的#${{env.Run_number}}号),请耐心等待...... 😋" "https://api.telegram.org/bot${{ secrets.TELEGRAM_BOT_TOKEN }}/sendMessage"
 
-    - name: 部署编译环境
+    - name: Initialization environment
       env:
         DEBIAN_FRONTEND: noninteractive
       run: |
@@ -108,7 +104,7 @@ jobs:
         sudo mkdir -p /${{matrix.target}}
         sudo chown $USER:$GROUPS /${{matrix.target}}
     
-    - name: 下载"${{matrix.target}}"源码
+    - name: Clone "${{matrix.target}}" source code
       working-directory: /${{matrix.target}}
       run: |
         git clone -b "$REPO_BRANCH" --single-branch "$REPO_URL" openwrt
@@ -118,7 +114,7 @@ jobs:
         echo "Home=${GITHUB_WORKSPACE}/openwrt" >> $GITHUB_ENV
         echo "PATH1=${GITHUB_WORKSPACE}/openwrt/${{matrix.target}}" >> $GITHUB_ENV
  
-    - name: 加载源,补丁和自定义设置
+    - name: Load custom feeds,patch,settings
       run: |
         echo "Compile_Date=$(date +%Y%m%d%H%M)" >> $GITHUB_ENV
         cp -Rf `find ./ -maxdepth 1 -type d ! -path './openwrt' ! -path './'` openwrt
@@ -143,21 +139,21 @@ jobs:
           source "${PATH1}/upgrade.sh" && Diy_Part1
         fi
     
-    - name: 缓存加速(7天内对应源码相同机型二次编译有效，每次只保留一个源码的缓存)
+    - name: Cache compiler
       if: env.USE_CACHEWRTBUILD == 'true'
       uses: klever1988/cachewrtbuild@test
       with:
         ccache: 'true'
         prefix: ${{ github.workspace }}/openwrt
         
-    - name: SSH远程连接（配置固件）
+    - name: SSH connection to Actions
       if: env.SSH_ACTIONS == 'true' || (github.event.inputs.ssh == 'ssh' && github.event.inputs.ssh  != 'false')
       uses: danshui-git/debugger-action@master
       env:
         TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
         TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
 
-    - name: 生成配置文件
+    - name: Defconfig
       run: |
         cd openwrt
         source "${PATH1}/common.sh" && Diy_chajian > /dev/null 2>&1
@@ -176,7 +172,7 @@ jobs:
           echo "TARGET_PROFILE=armvirt" >> $GITHUB_ENV
         fi
         
-    - name: 编译信息
+    - name: Compile Info
       run: |
         cd openwrt
         source "${PATH1}/common.sh" && Diy_chuli > /dev/null 2>&1
@@ -188,14 +184,14 @@ jobs:
           source "${PATH1}/common.sh" && Diy_xinxi
         fi
 
-    - name: 上传.config配置文件在 github actions
+    - name: Upload .config to github actions
       if: env.UPLOAD_CONFIG == 'true'
       uses: actions/upload-artifact@v2
       with:
         name: .config_${{ env.CODE }}_${{ env.TARGET_PROFILE }}_${{ env.Compile_Date }}
         path: config.txt
 
-    - name: 下载软件包
+    - name: Download packages
       id: package
       run: |
         cd openwrt
@@ -204,7 +200,7 @@ jobs:
         find dl -size -1024c -exec ls -l {} \;
         find dl -size -1024c -exec rm -f {} \;
 
-    - name: 开始编译固件
+    - name: Compile the firmware
       id: compile
       run: |
         cd openwrt
@@ -214,14 +210,14 @@ jobs:
         echo "date=$(date "+%Y%m%d%H%M%S")" >> $GITHUB_ENV
         echo "date1=$(date +'%m.%d')" >> $GITHUB_ENV
 
-    - name: 上传bin文件夹(固件+ipk)在 github actions
+    - name: Upload bin direction (rom+ipk) to github actions
       if: steps.compile.outputs.status == 'success' && env.UPLOAD_BIN_DIR == 'true'
       uses: actions/upload-artifact@v2
       with:
         name: filename+ipk_${{ env.CODE }}_${{ env.TARGET_PROFILE }}_${{ env.Compile_Date }}
         path: openwrt/bin
     
-    - name: 整理固件文件夹
+    - name: Organize files
       id: organizer
       run: |
         if [ "${AUTOMATIC_AMLOGIC}" == "true" ]; then
@@ -241,14 +237,14 @@ jobs:
         echo "BOT=TRUE" >> $GITHUB_ENV
         echo "::set-output name=status::success"
         
-    - name: 上传固件在 github actions
+    - name: Upload firmware to github actions
       if: steps.organizer.outputs.status == 'success' && env.UPLOAD_FIRMWARE == 'true'
       uses: actions/upload-artifact@v2
       with:
         name: ${{ env.OpenWrt_name }}-${{ env.CODE }}-${{ env.TARGET_PROFILE }}-firmware-${{ env.Compile_Date }}
         path: ${{ env.FIRMWARE }}
     
-    - name: 上传固件到「奶牛快传」和「WeTransfer」
+    - name: Upload firmware to cowtransfer or WeTransfer
       if: steps.compile.outputs.status == 'success' && env.UPLOAD_COWTRANSFER == 'true' && !cancelled()
       run: |
         curl -fsSL git.io/file-transfer | sh
@@ -259,7 +255,7 @@ jobs:
         sed -i "s/Download Link/WETRANSFER/g" wetransfer.log
         echo "::warning file=wetransfer.com::$(cat wetransfer.log | grep https)"
     
-    - name: 整理发布信息
+    - name: Generate release tag
       if: steps.organizer.outputs.status == 'success' && env.UPLOAD_RELEASE == 'true'
       run: |
         echo "### $(date +"%Y年%m月%d号-%H点%M分")" > update_log.txt
@@ -269,7 +265,7 @@ jobs:
         ./transfer wet -s -p 16 --no-progress ${FIRMWARE} 2>&1 | tee wetransfer.log
         echo "##### WETRANSFER：$(cat wetransfer.log | grep https | cut -f3 -d" ")" >> update_log.txt
     
-    - name: 发布固件
+    - name: Upload firmware to release
       if: steps.organizer.outputs.status == 'success' && env.UPLOAD_RELEASE == 'true'
       uses: ncipollo/release-action@v1
       with:
@@ -312,7 +308,7 @@ jobs:
         overwrite: true
         file_glob: true
 
-    - name: Messaging bot
+    - name: Messaging bot end
       if: steps.organizer.outputs.status == 'success' && !cancelled()
       run: curl -k --data chat_id="${{ secrets.TELEGRAM_CHAT_ID }}" --data "text=Mission Completed at ${{ env.FILE_DATE }}！💐" "https://api.telegram.org/bot${{ secrets.TELEGRAM_BOT_TOKEN }}/sendMessage"
-         
+      
