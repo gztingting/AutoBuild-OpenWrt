@@ -7,7 +7,7 @@
 # 如果你的OP是当主路由的话，网关、DNS、广播都不需要，代码前面加 # 注释掉，只保留后台地址和子网掩码就可以
 # 如果你有编译ipv6的话，‘去掉LAN口使用内置的 IPv6 管理’代码前面也加 # 注释掉
 
-git clone https://github.com/gztingting/luci-theme-argon-dark-mod package/luci-theme-argon-dark-mod
+#git clone https://github.com/gztingting/luci-theme-argon-dark-mod package/luci-theme-argon-dark-mod
 #git clone https://github.com/sirpdboy/luci-app-autotimeset package/luci-app-autotimeset
 
 cat >$NETIP <<-EOF
@@ -23,7 +23,7 @@ uci commit network                                                          # �
 uci set system.@system[0].hostname='Phicomm-N1'                             # 修改主机名称为Phicomm-N1
 EOF
 
-sed -i 's/luci-theme-bootstrap/luci-theme-argon-dark-mod/g' feeds/luci/collections/luci/Makefile                  # 选择argon为默认主题
+#sed -i 's/luci-theme-bootstrap/luci-theme-argon-dark-mod/g' feeds/luci/collections/luci/Makefile                  # 选择argon为默认主题
 
 sed -i "s/OpenWrt /FlyStation $(TZ=UTC-8 date "+%Y.%m.%d") @ OpenWrt /g" $ZZZ                                     # 增加个性名字FlyStation
 sed -i 's/luci.main.lang=zh_cn/luci.main.lang=en_us/g' $ZZZ                                                       # 修改为英文系统
