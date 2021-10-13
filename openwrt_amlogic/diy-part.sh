@@ -15,7 +15,7 @@ uci set network.lan.ipaddr='192.168.50.254'                                    #
 uci set network.lan.netmask='255.255.255.0'                                 # IPv4 子网掩码
 uci set network.lan.gateway='192.168.50.1'                                   # IPv4 网关
 uci set network.lan.broadcast='192.168.50.255'                               # IPv4 广播
-uci set network.lan.dns='114.114.114.114 223.5.5.5'                         # DNS(多个DNS要用空格分开)
+uci set network.lan.dns=' 211.136.192.6 223.5.5.5'                         # DNS(多个DNS要用空格分开)
 uci set network.lan.delegate='0'                                            # 去掉LAN口使用内置的 IPv6 管理
 uci commit network                                                          # 不要删除跟注释,除非上面全部删除或注释掉了
 #uci set dhcp.lan.ignore='1'                                                 # 关闭DHCP功能
@@ -29,6 +29,7 @@ sed -i "s/OpenWrt /FlyStation $(TZ=UTC-8 date "+%Y.%m.%d") @ OpenWrt /g" $ZZZ   
 sed -i 's/luci.main.lang=zh_cn/luci.main.lang=en_us/g' $ZZZ                                                       # 修改为英文系统
 sed -i '/CYXluq4wUazHjmCDBCqXF/d' $ZZZ                                                                            # 设置密码为空
 sed -i 's/京东签到服务/JD-DailyBonus/g' package/lean/luci-app-jd-dailybonus/luasrc/controller/jd-dailybonus.lua      #修改中文为英文
+sed -i 's/kmod-batman-adv +wpad-openssl/kmod-batman-adv/g' package/lean/luci-app-easymesh/Makefile                #easymesh插件不冲突
 
 # 设置打包固件的机型，内核组合（可用内核是时时变化的,过老的内核就删除的，所以要选择什么内核请看说明）
 cat >$GITHUB_WORKSPACE/amlogic_openwrt <<-EOF
