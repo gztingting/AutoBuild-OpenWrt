@@ -157,7 +157,14 @@ jobs:
     - name: Messaging bot
       if: steps.organize.outputs.status == 'success' && !cancelled()
       run: curl -k --data chat_id="${{ secrets.TELEGRAM_CHAT_ID }}" --data "text=Mission Completed at ${{ env.FILE_DATE }}！💐" "https://api.telegram.org/bot${{ secrets.TELEGRAM_BOT_TOKEN }}/sendMessage"
-          
+
+   - name: Wechat Messaging bot
+      uses: emon100/Action-Serverchan@v2
+      if: steps.organize.outputs.status == 'success' && env.SERVERCHAN_SCKEY == 'true' && !cancelled()
+      with:
+        SCKEY: ${{ secrets.SCKEY }}
+        text: Mission Completed at ${{ env.FILE_DATE }}！
+        desp: 顺利编译完成了！          
     - name: Upload firmware to cowtransfer
       id: cowtransfer
       if: steps.organize.outputs.status == 'success' && env.UPLOAD_COWTRANSFER == 'true' && !cancelled()
