@@ -37,5 +37,5 @@ sed -i "/CONFIG_64BIT=y/i\CONFIG_DRM=y" target/linux/x86/config-5.4
 sed -i "/CONFIG_64BIT=y/i\CONFIG_DRM_I915=y" target/linux/x86/config-5.4
 sed -i "/CONFIG_64BIT=y/i\CONFIG_DRM_I915_GVT=y" target/linux/x86/config-5.4
 
-sed -i 's/=0.4.0/=0.4.7/g' package/lean/aliyundrive-webdav/Makefile #升级到最新版本
+#sed -i 's/=0.4.0/=0.4.7/g' package/lean/aliyundrive-webdav/Makefile #升级到最新版本
 #chmod 755 package/lean/luci-app-autotimeset/root/etc/init.d/autotimeset
