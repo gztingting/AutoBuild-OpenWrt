@@ -14,13 +14,13 @@
 
 pushd package/lean
 git clone https://github.com/gztingting/luci-theme-argon-dark-mod
-git clone https://github.com/kenzok8/luci-theme-ifit
+#git clone https://github.com/kenzok8/luci-theme-ifit
 git clone https://github.com/DevOpenWRT-Router/luci-app-rebootschedule
 #git clone https://github.com/gztingting/luci-app-fileassistant
-svn co https://github.com/Lienol/openwrt-package/trunk/luci-app-fileassistant
-svn co https://github.com/Lienol/openwrt-package/trunk/luci-app-filebrowser
+#svn co https://github.com/Lienol/openwrt-package/trunk/luci-app-fileassistant
+#svn co https://github.com/Lienol/openwrt-package/trunk/luci-app-filebrowser
 #git clone https://github.com/sirpdboy/luci-app-autotimeset
 git clone https://github.com/fw876/helloworld
-svn co https://github.com/lisaac/luci-app-dockerman/trunk/applications/luci-app-dockerman
+#svn co https://github.com/lisaac/luci-app-dockerman/trunk/applications/luci-app-dockerman
 #git clone https://github.com/awesome-openwrt/luci-app-syncthing
 popd
