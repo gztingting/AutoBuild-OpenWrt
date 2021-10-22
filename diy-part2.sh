@@ -42,3 +42,4 @@ sed -i "/CONFIG_64BIT=y/i\CONFIG_DRM_I915_GVT=y" target/linux/x86/config-5.4
 
 sed -i 's/control/system/g' package/lean/luci-app-rebootschedule/luasrc/controller/rebootschedule.lua #放到system下
 sed -i 's/Control/system/g' package/lean/luci-app-rebootschedule/luasrc/controller/rebootschedule.lua
+#sed -i 's/文件助手/File Assistant/g' package/lean/luci-app-fileassistant/luasrc/controller/fileassistant.lua
