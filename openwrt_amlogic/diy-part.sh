@@ -8,13 +8,13 @@
 # 如果你有编译ipv6的话，‘去掉LAN口使用内置的 IPv6 管理’代码前面也加 # 注释掉
 
 git clone https://github.com/gztingting/luci-theme-argon-dark-mod package/luci-theme-argon-dark-mod
-git clone https://github.com/sirpdboy/luci-app-autotimeset package/luci-app-autotimeset
+#git clone https://github.com/sirpdboy/luci-app-autotimeset package/luci-app-autotimeset
 
 cat >$NETIP <<-EOF
-uci set network.lan.ipaddr='192.168.50.254'                                    # IPv4 地址(openwrt后台地址)
+uci set network.lan.ipaddr='192.168.1.254'                                    # IPv4 地址(openwrt后台地址)
 uci set network.lan.netmask='255.255.255.0'                                 # IPv4 子网掩码
-uci set network.lan.gateway='192.168.50.1'                                   # IPv4 网关
-uci set network.lan.broadcast='192.168.50.255'                               # IPv4 广播
+uci set network.lan.gateway='192.168.1.1'                                   # IPv4 网关
+uci set network.lan.broadcast='192.168.1.255'                               # IPv4 广播
 uci set network.lan.dns=' 211.136.192.6 223.5.5.5'                         # DNS(多个DNS要用空格分开)
 uci set network.lan.delegate='0'                                            # 去掉LAN口使用内置的 IPv6 管理
 uci commit network                                                          # 不要删除跟注释,除非上面全部删除或注释掉了
@@ -28,8 +28,8 @@ sed -i 's/luci-theme-bootstrap/luci-theme-argon-dark-mod/g' feeds/luci/collectio
 sed -i "s/OpenWrt /FlyStation $(TZ=UTC-8 date "+%Y.%m.%d") @ OpenWrt /g" $ZZZ                                     # 增加个性名字FlyStation
 sed -i 's/luci.main.lang=zh_cn/luci.main.lang=en_us/g' $ZZZ                                                       # 修改为英文系统
 sed -i '/CYXluq4wUazHjmCDBCqXF/d' $ZZZ                                                                            # 设置密码为空
-sed -i 's/京东签到服务/JD-DailyBonus/g' package/lean/luci-app-jd-dailybonus/luasrc/controller/jd-dailybonus.lua      #修改中文为英文
-sed -i 's/kmod-batman-adv +wpad-openssl/kmod-batman-adv/g' package/lean/luci-app-easymesh/Makefile                #easymesh插件不冲突
+#sed -i 's/京东签到服务/JD-DailyBonus/g' package/lean/luci-app-jd-dailybonus/luasrc/controller/jd-dailybonus.lua      #修改中文为英文
+#sed -i 's/kmod-batman-adv +wpad-openssl/kmod-batman-adv/g' package/lean/luci-app-easymesh/Makefile                #easymesh插件不冲突
 
 # 设置打包固件的机型，内核组合（可用内核是时时变化的,过老的内核就删除的，所以要选择什么内核请看说明）
 cat >$GITHUB_WORKSPACE/amlogic_openwrt <<-EOF
@@ -38,4 +38,6 @@ amlogic_kernel=5.10.70
 rootfs_size=768
 EOF
 
-chmod 755 package/luci-app-autotimeset/root/etc/init.d/autotimeset
+sed -i 's/control/system/g' package/lean/luci-app-rebootschedule/luasrc/controller/rebootschedule.lua #放到system下
+sed -i 's/Control/system/g' package/lean/luci-app-rebootschedule/luasrc/controller/rebootschedule.lua
+#chmod 755 package/luci-app-autotimeset/root/etc/init.d/autotimeset
