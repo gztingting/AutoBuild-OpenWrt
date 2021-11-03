@@ -11,10 +11,10 @@ git clone https://github.com/gztingting/luci-theme-argon-dark-mod package/luci-t
 #git clone https://github.com/sirpdboy/luci-app-autotimeset package/luci-app-autotimeset
 
 cat >$NETIP <<-EOF
-uci set network.lan.ipaddr='192.168.1.254'                                    # IPv4 地址(openwrt后台地址)
-uci set network.lan.netmask='255.255.255.0'                                 # IPv4 子网掩码
-uci set network.lan.gateway='192.168.1.1'                                   # IPv4 网关
-uci set network.lan.broadcast='192.168.1.255'                               # IPv4 广播
+uci set network.lan.ipaddr='10.59.72.115'                                    # IPv4 地址(openwrt后台地址)
+uci set network.lan.netmask='255.255.255.128'                                 # IPv4 子网掩码
+uci set network.lan.gateway='10.59.72.1'                                   # IPv4 网关
+uci set network.lan.broadcast='10.59.72.127'                               # IPv4 广播
 uci set network.lan.dns='211.136.192.6 223.5.5.5'                         # DNS(多个DNS要用空格分开)
 uci set network.lan.delegate='0'                                            # 去掉LAN口使用内置的 IPv6 管理
 uci commit network                                                          # 不要删除跟注释,除非上面全部删除或注释掉了
