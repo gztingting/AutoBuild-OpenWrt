@@ -38,9 +38,9 @@ amlogic_kernel=5.10.70
 rootfs_size=768
 EOF
 
-sed -i 's/control/system/g' package/lean/luci-app-rebootschedule/luasrc/controller/rebootschedule.lua #放到system下
-sed -i 's/Control/system/g' package/lean/luci-app-rebootschedule/luasrc/controller/rebootschedule.lua
+#sed -i 's/control/system/g' package/lean/luci-app-rebootschedule/luasrc/controller/rebootschedule.lua #放到system下
+#sed -i 's/Control/system/g' package/lean/luci-app-rebootschedule/luasrc/controller/rebootschedule.lua
 #chmod 755 package/luci-app-autotimeset/root/etc/init.d/autotimeset
 
-sed -i 's/LUCI_DEPENDS.*/LUCI_DEPENDS:=\@\(arm\|\|aarch64\)/g' package/lean/luci-app-cpufreq/Makefile #适配amlogic
-sed -i 's/TARGET_rockchip/TARGET_rockchip\|\|TARGET_armvirt/g' package/lean/autocore/Makefile         #为armvirt添加autocore 支持
+#sed -i 's/LUCI_DEPENDS.*/LUCI_DEPENDS:=\@\(arm\|\|aarch64\)/g' package/lean/luci-app-cpufreq/Makefile #适配amlogic
+#sed -i 's/TARGET_rockchip/TARGET_rockchip\|\|TARGET_armvirt/g' package/lean/autocore/Makefile         #为armvirt添加autocore 支持
