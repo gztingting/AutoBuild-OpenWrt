@@ -44,3 +44,10 @@ EOF
 
 #sed -i 's/LUCI_DEPENDS.*/LUCI_DEPENDS:=\@\(arm\|\|aarch64\)/g' package/lean/luci-app-cpufreq/Makefile #适配amlogic
 #sed -i 's/TARGET_rockchip/TARGET_rockchip\|\|TARGET_armvirt/g' package/lean/autocore/Makefile         #为armvirt添加autocore 支持
+
+cat >${GITHUB_WORKSPACE}/Clear <<-EOF
+rm -rf *buildinfo
+rm -rf *manifest
+rm -rf sha256sums
+rm -rf *amlogic-armvirt*
+EOF
