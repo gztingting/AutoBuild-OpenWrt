@@ -104,11 +104,11 @@ jobs:
         git rm -rf $GITHUB_WORKSPACE/repogx/.github/workflows/${{env.BILDYML}}
         cp -Rf $GITHUB_WORKSPACE/shangyou/.github/workflows/synchronization.yml .github/workflows/synchronization.yml        
         if [[ -f openwrt_amlogic/diy-part.sh ]];then
-          cp -Rf openwrt_amlogic/diy-part.sh build/openwrt_amlogic/diy-part.sh.bak
+          cp -Rf openwrt_amlogic/diy-part.sh openwrt_amlogic/diy-part.sh.bak
           git rm -rf openwrt_amlogic/diy-part.sh
         fi        
         if [[ -f openwrt_amlogic/settings.ini ]];then
-          cp -Rf openwrt_amlogic/settings.ini build/openwrt_amlogic/settings.ini.bak
+          cp -Rf openwrt_amlogic/settings.ini openwrt_amlogic/settings.ini.bak
           git rm -rf openwrt_amlogic/settings.ini
         fi
         cp -Rf $GITHUB_WORKSPACE/shangyou/* ./
