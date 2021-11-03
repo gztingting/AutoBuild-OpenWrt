@@ -9,7 +9,7 @@
 #
 
 
-name: compile
+name: N1_compile
 on:
   workflow_dispatch:
   push:
