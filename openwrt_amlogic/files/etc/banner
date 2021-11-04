@@ -7,9 +7,9 @@
 ╚═╝     ╚══════╝╚═╝   ╚══════╝   ╚═╝   ╚═╝  ╚═╝   ╚═╝   ╚═╝ ╚═════╝ ╚═╝  ╚═══╝
 
  ------------------------------------------------------------------------------
-			Install: OpenWrt → System → Amlogic Service → Install
-			Update: OpenWrt → System → Amlogic Service → Update
-			Amlogic SoC: s905d
-			OpenWrt Kernel: 5.10.77-flippy-66+
-			Packaged Date: 2021-11-03
+	Install: OpenWrt → System → Amlogic Service → Install
+	Update: OpenWrt → System → Amlogic Service → Update
+	Amlogic SoC: s905d
+	OpenWrt Kernel: 5.10.77-flippy-66+
+	Packaged Date: 2021-11-03
  --------------------------------------------------------------------------------
