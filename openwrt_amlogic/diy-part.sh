@@ -11,13 +11,13 @@ git clone https://github.com/gztingting/luci-theme-argon-dark-mod package/luci-t
 #git clone https://github.com/sirpdboy/luci-app-autotimeset package/luci-app-autotimeset
 
 cat >$NETIP <<-EOF
-uci set network.lan.ipaddr='10.59.72.115'                                    # IPv4 地址(openwrt后台地址)
-uci set network.lan.netmask='255.255.255.128'                                 # IPv4 子网掩码
-uci set network.lan.gateway='10.59.72.1'                                   # IPv4 网关
-uci set network.lan.broadcast='10.59.72.127'                               # IPv4 广播
-uci set network.lan.dns='211.136.192.6 223.5.5.5'                         # DNS(多个DNS要用空格分开)
-uci set network.lan.delegate='0'                                            # 去掉LAN口使用内置的 IPv6 管理
-uci commit network                                                          # 不要删除跟注释,除非上面全部删除或注释掉了
+#uci set network.lan.ipaddr='10.59.72.115'                                    # IPv4 地址(openwrt后台地址)
+#uci set network.lan.netmask='255.255.255.128'                                 # IPv4 子网掩码
+#uci set network.lan.gateway='10.59.72.1'                                   # IPv4 网关
+#uci set network.lan.broadcast='10.59.72.127'                               # IPv4 广播
+#uci set network.lan.dns='211.136.192.6 223.5.5.5'                         # DNS(多个DNS要用空格分开)
+#uci set network.lan.delegate='0'                                            # 去掉LAN口使用内置的 IPv6 管理
+#uci commit network                                                          # 不要删除跟注释,除非上面全部删除或注释掉了
 #uci set dhcp.lan.ignore='1'                                                 # 关闭DHCP功能
 #uci commit dhcp                                                             # 跟‘关闭DHCP功能’联动,同时启用或者删除跟注释
 uci set system.@system[0].hostname='Phicomm-N1'                             # 修改主机名称为Phicomm-N1
@@ -40,6 +40,7 @@ EOF
 
 find -name "rebootschedule.lua" | xargs -i sed -i 's/control/system/g' {} #放到system下
 find -name "rebootschedule.lua" | xargs -i sed -i 's/Control/system/g' {} #放到system下
+find -name "rebootschedule.lua" | xargs -i sed -i 's/定时任务/Schedule More/g' {} #放到system下
 #chmod 755 package/luci-app-autotimeset/root/etc/init.d/autotimeset
 
 #sed -i 's/LUCI_DEPENDS.*/LUCI_DEPENDS:=\@\(arm\|\|aarch64\)/g' package/lean/luci-app-cpufreq/Makefile #适配amlogic
