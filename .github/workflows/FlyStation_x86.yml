@@ -91,7 +91,7 @@ jobs:
         TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
 
     - name: Organize_config
-      id: organizeconf
+      id: orconf
       run: |
         cd openwrt/bin && mkdir config
         cp -Rf targets/*/*/config.buildinfo ./config/config_${{ env.FILE_DATE2 }}.txt
@@ -104,10 +104,10 @@ jobs:
         rm -rf packages
         echo "FIRMWARE=$PWD" >> $GITHUB_ENV
         echo "::set-output name=status::success"
-		
+	
     - name: Upload .autoconfig
       uses: actions/upload-artifact@v2
-      if: steps.organizeconf.outputs.status == 'success'
+      if: steps.orconf.outputs.status == 'success'
       with:
         name: ${{ env.FILE_DATE2 }}.config
         path: openwrt/bin/config/
