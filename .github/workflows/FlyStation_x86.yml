@@ -90,7 +90,7 @@ jobs:
         TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
         TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
 
-    - name: Organize config
+    - name: Organize_config
       id: organizeconf
       if: env.UPLOAD_FIRMWARE == 'true'
       run: |
