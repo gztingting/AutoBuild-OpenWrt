@@ -92,6 +92,7 @@ jobs:
 
     - name: Organize config
       id: organizeconf
+      if: env.UPLOAD_FIRMWARE == 'true'
       run: |
         cd openwrt/bin && mkdir config
         cp -Rf targets/*/*/config.buildinfo ./config/config_${{ env.FILE_DATE2 }}.txt
