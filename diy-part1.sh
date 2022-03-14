@@ -16,7 +16,7 @@ pushd package/lean
 git clone https://github.com/gztingting/luci-theme-argon-dark-mod
 #git clone https://github.com/kenzok8/luci-theme-ifit
 git clone https://github.com/DevOpenWRT-Router/luci-app-rebootschedule
-#git clone https://github.com/gztingting/luci-app-fileassistant
+git clone https://github.com/gztingting/luci-app-fileassistant
 #svn co https://github.com/Lienol/openwrt-package/trunk/luci-app-fileassistant
 #svn co https://github.com/Lienol/openwrt-package/trunk/luci-app-filebrowser
 #git clone https://github.com/sirpdboy/luci-app-autotimeset
