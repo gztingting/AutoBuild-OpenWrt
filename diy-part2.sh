@@ -42,5 +42,5 @@ sed -i "/CONFIG_64BIT=y/i\CONFIG_DRM_I915_GVT=y" target/linux/x86/config-5.4
 
 sed -i '7d' package/lean/luci-app-rebootschedule/luasrc/controller/rebootschedule.lua
 sed -i 's/"control"/"system"/g' package/lean/luci-app-rebootschedule/luasrc/controller/rebootschedule.lua #move to system entry
-sed -i 's/services/nas/g' package/lean/luci-app-aliyundrive-webdav/luasrc/controller/aliyundrive-webdav.lua #move to nas entry
+#sed -i 's/services/nas/g' package/lean/luci-app-aliyundrive-webdav/luasrc/controller/aliyundrive-webdav.lua #move to nas entry
 #sed -i 's/文件助手/File Assistant/g' package/lean/luci-app-fileassistant/luasrc/controller/fileassistant.lua
