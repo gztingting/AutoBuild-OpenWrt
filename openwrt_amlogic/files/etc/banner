@@ -10,6 +10,6 @@
 	Install: OpenWrt → System → Amlogic Service → Install
 	Update: OpenWrt → System → Amlogic Service → Update
 	Amlogic SoC: s905d
-	OpenWrt Kernel: 5.10.77-flippy-66+
+	OpenWrt Kernel: 5.15.35-flippy-72+
 	Packaged Date: 2022-04-23
  --------------------------------------------------------------------------------
