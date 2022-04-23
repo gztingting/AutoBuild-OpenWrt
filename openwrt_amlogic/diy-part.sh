@@ -20,14 +20,15 @@ cat >$NETIP <<-EOF
 #uci commit network                                                          # 不要删除跟注释,除非上面全部删除或注释掉了
 #uci set dhcp.lan.ignore='1'                                                 # 关闭DHCP功能
 #uci commit dhcp                                                             # 跟‘关闭DHCP功能’联动,同时启用或者删除跟注释
-uci set system.@system[0].hostname='Phicomm-N1'                             # 修改主机名称为Phicomm-N1
+uci set system.@system[0].hostname='Phicomm-N1'                              # 修改主机名称为Phicomm-N1
+uci set ttyd.@ttyd[0].command='/bin/login -f root'                           # 设置ttyd免帐号登录（去掉uci前面的#生效）
 EOF
 
 sed -i 's/luci-theme-bootstrap/luci-theme-argon-dark-mod/g' feeds/luci/collections/luci/Makefile                  # 选择argon为默认主题
 
-sed -i "s/OpenWrt /FlyStation $(TZ=UTC-8 date "+%Y.%m.%d") @ OpenWrt /g" $ZZZ                                     # 增加个性名字FlyStation
-sed -i 's/luci.main.lang=zh_cn/luci.main.lang=en_us/g' $ZZZ                                                       # 修改为英文系统
-sed -i '/CYXluq4wUazHjmCDBCqXF/d' $ZZZ                                                                            # 设置密码为空
+sed -i "s/OpenWrt /FlyStation $(TZ=UTC-8 date "+%Y.%m.%d") @ OpenWrt /g" "$ZZZ_PATH"                                     # 增加个性名字FlyStation
+sed -i 's/luci.main.lang=zh_cn/luci.main.lang=en_us/g' "$ZZZ_PATH"                                                       # 修改为英文系统
+sed -i '/CYXluq4wUazHjmCDBCqXF/d' "$ZZZ_PATH"                                                                            # 设置密码为空
 #sed -i 's/京东签到服务/JD-DailyBonus/g' package/lean/luci-app-jd-dailybonus/luasrc/controller/jd-dailybonus.lua      #修改中文为英文
 #sed -i 's/kmod-batman-adv +wpad-openssl/kmod-batman-adv/g' package/lean/luci-app-easymesh/Makefile                #easymesh插件不冲突
 
