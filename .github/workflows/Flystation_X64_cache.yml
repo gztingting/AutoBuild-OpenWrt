@@ -9,7 +9,7 @@
 # Tingting Modified
 #
 
-name: Flystation_test_cache
+name: Flystation_X64_cache
 
 on:
    workflow_dispatch:
