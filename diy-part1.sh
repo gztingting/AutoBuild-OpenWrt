@@ -23,4 +23,5 @@ git clone https://github.com/gztingting/luci-app-fileassistant
 git clone https://github.com/fw876/helloworld
 #svn co https://github.com/lisaac/luci-app-dockerman/trunk/applications/luci-app-dockerman
 #git clone https://github.com/awesome-openwrt/luci-app-syncthing
+git clone https://github.com/jerrykuku/luci-app-jd-dailybonus
 popd
