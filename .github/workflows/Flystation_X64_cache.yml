@@ -90,12 +90,7 @@ jobs:
       env:
         TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
         TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
-
-    - name: 1st Upload .config
-      uses: actions/upload-artifact@main
-      with:
-        name: ${{ env.FILE_DATE2 }}.conf
-        path: openwrt/.config
+   
     - name: Download package
       id: package
       run: |
@@ -104,6 +99,13 @@ jobs:
         make download -j8
         find dl -size -1024c -exec ls -l {} \;
         find dl -size -1024c -exec rm -f {} \;
+    
+    - name: 1st Upload .config
+      uses: actions/upload-artifact@main
+      with:
+        name: ${{ env.FILE_DATE2 }}.conf
+        path: openwrt/.config
+    
     - name: Compile the firmware
       id: compile
       run: |
