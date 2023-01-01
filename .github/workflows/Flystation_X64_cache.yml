@@ -98,14 +98,8 @@ jobs:
         make defconfig
         make download -j8
         find dl -size -1024c -exec ls -l {} \;
-        find dl -size -1024c -exec rm -f {} \;
-    
-    - name: 1st Upload .config
-      uses: actions/upload-artifact@main
-      with:
-        name: ${{ env.FILE_DATE2 }}.conf
-        path: openwrt/.config
-    
+        find dl -size -1024c -exec rm -f {} \;    
+   
     - name: Compile the firmware
       id: compile
       run: |
