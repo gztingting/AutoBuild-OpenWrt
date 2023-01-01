@@ -85,7 +85,7 @@ jobs:
         cd openwrt
         $GITHUB_WORKSPACE/$DIY_P2_SH
     - name: SSH connection to Actions
-      uses: danshui-git/debugger-action@main
+      uses: gztingting/debugger-action@main
       if: (github.event.inputs.ssh == 'ssh' && github.event.inputs.ssh  != 'ssh-action') || contains(github.event.action, 'ssh')
       env:
         TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
