@@ -1,0 +1,32 @@
+
+config interface 'loopback'
+	option ifname 'lo'
+	option proto 'static'
+	option ipaddr '127.0.0.1'
+	option netmask '255.0.0.0'
+
+config interface 'lan'
+	option type 'bridge'
+	option ifname 'eth1 eth2 eth3'
+	option proto 'static'
+	option ipaddr '192.168.50.1'
+	option netmask '255.255.255.0'
+	option broadcast '192.168.50.255'
+	option ip6assign '64'
+	option ip6hint '0'
+
+config interface 'wan'
+	option ifname 'eth0'
+	option _orig_ifname 'eth0'
+	option _orig_bridge 'false'
+	option proto 'pppoe'
+	option keepalive '0'
+	option username '13924277690@139.gd'
+	option password '277690'
+	option ipv6 'auto'
+
+config device 'docker0'
+	option type 'bridge'
+	option name 'docker0'
+	list ifname 'docker0'
+
