@@ -9,7 +9,7 @@
 # Tingting Modified
 #
 
-name: Flystation_X64_cache-960
+name: Flystation_X64_cache
 
 on:
    workflow_dispatch:
@@ -35,7 +35,7 @@ env:
 
 jobs:
   build:
-    name: Build OpenWrt
+    name: Build OpenWrt-960
     runs-on: ubuntu-20.04
 
     steps:
