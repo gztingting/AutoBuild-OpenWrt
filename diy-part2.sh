@@ -27,6 +27,8 @@ sed -i "s/OpenWrt /FlyStation $(TZ=UTC-8 date "+%Y.%m.%d") @ OpenWrt /g" $ZZZ   
 sed -i '/CYXluq4wUazHjmCDBCqXF/d' $ZZZ                                                 # 设置密码为空
 sed -i "/uci commit system/i\uci set system.@system[0].hostname='FlyStation'" $ZZZ     # 修改主机名称为FlyStation
 
+sed -i 's/192.168.1.1/192.168.50.1/g' package/base-files/image-config.in
+sed -i 's/192.168.1.255/192.168.50.255/g' package/base-files/image-config.in
 #sed -i "/CONFIG_DUMMY_CONSOLE=y/a\CONFIG_64BIT=y" target/linux/x86/config-5.10 #增加i915显卡
 #sed -i "/CONFIG_64BIT=y/i\CONFIG_DRM=y" target/linux/x86/config-5.10
 #sed -i "/CONFIG_64BIT=y/i\CONFIG_DRM_I915=y" target/linux/x86/config-5.10
