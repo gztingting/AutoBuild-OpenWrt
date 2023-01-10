@@ -12,6 +12,8 @@
 # Add a feed source
 #sed -i '$a src-git lienol https://github.com/Lienol/openwrt-package' feeds.conf.default
 
+rm -R ./package/feeds/luci/luci-app-aliyundrive-webdav
+
 pushd package/lean
 git clone https://github.com/gztingting/luci-theme-argon-dark-mod
 #git clone https://github.com/kenzok8/luci-theme-ifit
