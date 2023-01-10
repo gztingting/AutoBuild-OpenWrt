@@ -35,7 +35,7 @@ env:
 
 jobs:
   build:
-    name: Build OpenWrt-new_conf_recompile
+    name: Build OpenWrt-Test_conflict
     runs-on: ubuntu-20.04
 
     steps:
