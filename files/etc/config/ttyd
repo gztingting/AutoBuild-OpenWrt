@@ -1,4 +1,5 @@
 
 config ttyd
-	option interface '@lan'
+#	option interface '@lan'
+        option ipv6 'on'
 	option command '/bin/login -f root'
