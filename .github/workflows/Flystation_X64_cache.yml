@@ -26,7 +26,7 @@ env:
   CONFIG_FILE: .config
   DIY_P1_SH: diy-part1.sh
   DIY_P2_SH: diy-part2.sh
-  UPLOAD_BIN_DIR: true
+  UPLOAD_BIN_DIR: false
   UPLOAD_FIRMWARE: true
   UPLOAD_COWTRANSFER: false
   UPLOAD_WETRANSFER: false
@@ -35,7 +35,7 @@ env:
 
 jobs:
   build:
-    name: Build OpenWrt-upload-ipk
+    name: Build OpenWrt-768test
     runs-on: ubuntu-20.04
 
     steps:
@@ -59,11 +59,11 @@ jobs:
         df -hT $PWD
         git clone $REPO_URL -b $REPO_BRANCH openwrt
         ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt	
-#    - name: Cache
-#      uses: klever1988/cachewrtbuild@main
-#      with:
-#        ccache: 'true'
-#        prefix: ${{ github.workspace }}/openwrt
+    - name: Cache
+      uses: klever1988/cachewrtbuild@main
+      with:
+        ccache: 'true'
+        prefix: ${{ github.workspace }}/openwrt
   #以上这段 第一次编译时不需要
     - name: Load custom feeds
       run: |
