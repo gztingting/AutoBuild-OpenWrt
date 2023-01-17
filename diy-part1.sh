@@ -14,7 +14,7 @@
 
 #rm -R ./feeds/luci/applications/luci-app-aliyundrive-webdav
 
-pushd feeds/luci/applications
+pushd package/lean
 git clone https://github.com/gztingting/luci-theme-argon-dark-mod
 #git clone https://github.com/kenzok8/luci-theme-ifit
 git clone https://github.com/DevOpenWRT-Router/luci-app-rebootschedule
