@@ -20,7 +20,7 @@ ZZZ="package/lean/default-settings/files/zzz-default-settings"
 #echo "close_dhcp" > package/base-files/files/etc/closedhcp
 
 sed -i 's/luci-theme-bootstrap/luci-theme-argon-dark-mod/g' feeds/luci/collections/luci/Makefile                  # 选择argon为默认主题
-sed -i 's/京东签到服务/JD-DailyBonus/g' package/lean/luci-app-jd-dailybonus/luasrc/controller/jd-dailybonus.lua    #修改京东签到中文为英文
+#sed -i 's/京东签到服务/JD-DailyBonus/g' package/lean/luci-app-jd-dailybonus/luasrc/controller/jd-dailybonus.lua    #修改京东签到中文为英文
 
 sed -i 's/luci.main.lang=zh_cn/luci.main.lang=en_us/g' $ZZZ                            # 修改为英文系统
 sed -i "s/OpenWrt /FlyStation $(TZ=UTC-8 date "+%Y.%m.%d") @ OpenWrt /g" $ZZZ          # 增加个性名字FlyStation
