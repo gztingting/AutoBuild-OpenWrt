@@ -28,8 +28,8 @@ svn co https://github.com/281677160/openwrt-package/trunk/luci-app-cloudflarespe
 git clone https://github.com/fw876/helloworld
 #svn co https://github.com/lisaac/luci-app-dockerman/trunk/applications/luci-app-dockerman
 #git clone https://github.com/awesome-openwrt/luci-app-syncthing
-git clone https://github.com/jerrykuku/luci-app-jd-dailybonus
-git clone https://github.com/281677160/openwrt-passwall
+#git clone https://github.com/jerrykuku/luci-app-jd-dailybonus
+#git clone https://github.com/281677160/openwrt-passwall
 #git clone https://github.com/xiaorouji/openwrt-passwall.git -b packages ./passwall_package
 #git clone https://github.com/xiaorouji/openwrt-passwall.git -b luci ./passwall
 #cp -rf ./passwall_package/* ./passwall
