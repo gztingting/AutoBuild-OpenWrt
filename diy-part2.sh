@@ -51,6 +51,7 @@ sed -i 's/192.168.1.255/192.168.50.255/g' package/base-files/image-config.in
 
 #sed -i 's/=0.4.0/=0.4.7/g' package/lean/aliyundrive-webdav/Makefile #升级到最新版本
 #chmod 755 package/lean/luci-app-autotimeset/root/etc/init.d/autotimeset
+chmod 755 package/lean/luci-app-rebootschedule/root/etc/init.d/rebootschedule
 
 sed -i '7d' package/lean/luci-app-rebootschedule/luasrc/controller/rebootschedule.lua
 sed -i 's/"control"/"system"/g' package/lean/luci-app-rebootschedule/luasrc/controller/rebootschedule.lua #move to system entry
