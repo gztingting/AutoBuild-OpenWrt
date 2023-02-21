@@ -23,6 +23,10 @@ git clone https://github.com/gztingting/luci-app-fileassistant
 #svn co https://github.com/kenzok8/openwrt-packages/trunk/luci-app-aliyundrive-webdav
 svn co https://github.com/281677160/openwrt-package/trunk/cdnspeedtest
 svn co https://github.com/281677160/openwrt-package/trunk/luci-app-cloudflarespeedtest
+svn co https://github.com/281677160/openwrt-package/trunk/alist
+svn co https://github.com/281677160/openwrt-package/trunk/luci-app-alist
+svn co https://github.com/281677160/openwrt-package/trunk/syncthing
+svn co https://github.com/281677160/openwrt-package/trunk/luci-app-syncthing
 #svn co https://github.com/Lienol/openwrt-package/trunk/luci-app-filebrowser
 #git clone https://github.com/sirpdboy/luci-app-autotimeset
 git clone https://github.com/fw876/helloworld
