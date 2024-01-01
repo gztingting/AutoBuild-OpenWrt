@@ -1,4 +1,5 @@
 #!/bin/bash
+ZZZ="package/lean/default-settings/files/zzz-default-settings"
 
 # 修改默认IP
 sed -i 's/192.168.1.1/192.168.2.254/g' package/base-files/files/bin/config_generate
@@ -20,10 +21,10 @@ rm -rf feeds/luci/applications/luci-app-netdata
 rm -rf feeds/luci/applications/luci-app-serverchan
 
 # 添加额外插件
-git clone https://github.com/gztingting/luci-theme-argon-dark-mod
-git clone https://github.com/DevOpenWRT-Router/luci-app-rebootschedule
-git clone https://github.com/gztingting/luci-app-fileassistant
-# git clone --depth=1 https://github.com/kongfl888/luci-app-adguardhome package/luci-app-adguardhome
+git clone https://github.com/gztingting/luci-theme-argon-dark-mod package/luci-theme-argon-dark-mod
+git clone https://github.com/DevOpenWRT-Router/luci-app-rebootschedule package/luci-app-rebootschedule
+git clone https://github.com/gztingting/luci-app-fileassistant package/luci-app-fileassistant
+git clone --depth=1 https://github.com/kongfl888/luci-app-adguardhome package/luci-app-adguardhome
 git clone --depth=1 -b openwrt-18.06 https://github.com/tty228/luci-app-wechatpush package/luci-app-serverchan
 git clone --depth=1 https://github.com/ilxp/luci-app-ikoolproxy package/luci-app-ikoolproxy
 git clone --depth=1 https://github.com/esirplayground/luci-app-poweroff package/luci-app-poweroff
@@ -32,7 +33,7 @@ git clone --depth=1 https://github.com/Jason6111/luci-app-netdata package/luci-a
 svn export https://github.com/Lienol/openwrt-package/trunk/luci-app-filebrowser package/luci-app-filebrowser
 svn export https://github.com/Lienol/openwrt-package/trunk/luci-app-ssr-mudb-server package/luci-app-ssr-mudb-server
 svn export https://github.com/immortalwrt/luci/branches/openwrt-18.06/applications/luci-app-eqos package/luci-app-eqos
-# svn export https://github.com/syb999/openwrt-19.07.1/trunk/package/network/services/msd_lite package/msd_lite
+svn export https://github.com/syb999/openwrt-19.07.1/trunk/package/network/services/msd_lite package/msd_lite
 
 # 科学上网插件
 git clone --depth=1 -b main https://github.com/fw876/helloworld package/luci-app-ssr-plus
@@ -53,7 +54,7 @@ svn export https://github.com/haiibo/packages/trunk/luci-theme-opentomcat packag
 svn export https://github.com/haiibo/packages/trunk/luci-theme-netgear package/luci-theme-netgear
 
 # 更改 Argon 主题背景
-cp -f $GITHUB_WORKSPACE/images/bg1.jpg package/luci-theme-argon/htdocs/luci-static/argon/img/bg1.jpg
+# cp -f $GITHUB_WORKSPACE/images/bg1.jpg package/luci-theme-argon/htdocs/luci-static/argon/img/bg1.jpg
 
 # 晶晨宝盒
 svn export https://github.com/ophub/luci-app-amlogic/trunk/luci-app-amlogic package/luci-app-amlogic
@@ -100,7 +101,7 @@ sed -i 's/os.date()/os.date("%a %Y-%m-%d %H:%M:%S")/g' package/lean/autocore/fil
 # 修改版本为编译日期
 date_version=$(date +"%y.%m.%d")
 orig_version=$(cat "package/lean/default-settings/files/zzz-default-settings" | grep DISTRIB_REVISION= | awk -F "'" '{print $2}')
-sed -i "s/${orig_version}/R${date_version} by Haiibo/g" package/lean/default-settings/files/zzz-default-settings
+sed -i "s/${orig_version}/R${date_version} by Dane/g" package/lean/default-settings/files/zzz-default-settings
 
 # 修复 hostapd 报错
 cp -f $GITHUB_WORKSPACE/scripts/011-fix-mbo-modules-build.patch package/network/services/hostapd/patches/011-fix-mbo-modules-build.patch
@@ -118,6 +119,19 @@ find package/luci-theme-*/* -type f -name '*luci-theme-*' -print -exec sed -i '/
 # sed -i 's/services/vpn/g' feeds/luci/applications/luci-app-v2ray-server/luasrc/controller/*.lua
 # sed -i 's/services/vpn/g' feeds/luci/applications/luci-app-v2ray-server/luasrc/model/cbi/v2ray_server/*.lua
 # sed -i 's/services/vpn/g' feeds/luci/applications/luci-app-v2ray-server/luasrc/view/v2ray_server/*.htm
+
+sed -i 's/luci.main.lang=zh_cn/luci.main.lang=en_us/g' $ZZZ                            # 修改为英文系统
+sed -i "s/OpenWrt /FlyStation $(TZ=UTC-8 date "+%Y.%m.%d") @ OpenWrt /g" $ZZZ          # 增加个性名字FlyStation
+sed -i '/CYXluq4wUazHjmCDBCqXF/d' $ZZZ                                                 # 设置密码为空
+sed -i "/uci commit system/i\uci set system.@system[0].hostname='FlyStation'" $ZZZ     # 修改主机名称为FlyStation
+
+sed -i 's/192.168.1.1/192.168.2.254/g' package/base-files/image-config.in
+sed -i 's/192.168.1.255/192.168.2.255/g' package/base-files/image-config.in
+chmod 755 package/luci-app-rebootschedule/root/etc/init.d/rebootschedule
+
+sed -i '7d' package/luci-app-rebootschedule/luasrc/controller/rebootschedule.lua
+sed -i 's/"control"/"system"/g' package/luci-app-rebootschedule/luasrc/controller/rebootschedule.lua #move to system entry
+sed -i 's/luci-theme-bootstrap/luci-theme-argon-dark-mod/g' feeds/luci/collections/luci/Makefile                  # 选择argon-dark-mod为默认主题
 
 ./scripts/feeds update -a
 ./scripts/feeds install -a
