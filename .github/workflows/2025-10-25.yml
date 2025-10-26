@@ -1,4 +1,4 @@
-name: FlyStation_X86_64_2024-01-01
+name: FlyStation_X86_64_2025-10-25
 
 on:
   workflow_dispatch:
@@ -196,7 +196,7 @@ jobs:
           - ⚽ Source code: ${{ env.REPO_URL }}
           - 💝 Code branch: ${{ env.REPO_BRANCH }}
           - 🚀 Kernel version: ${{ env.KERNEL }}
-          - 🌐 Admin IP: 192.168.2.254
+          - 🌐 Admin IP: 192.168.50.1
           - 🔑 Admin Password: 
           ### 🧊 Firmware version
           - The last compilation➦[source code](${{ env.REPO_URL }})update record
