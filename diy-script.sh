@@ -2,7 +2,7 @@
 ZZZ="package/lean/default-settings/files/zzz-default-settings"
 
 # 修改默认IP
-sed -i 's/192.168.1.1/192.168.2.254/g' package/base-files/files/bin/config_generate
+sed -i 's/192.168.1.1/10.0.0.254/g' package/base-files/files/bin/config_generate
 
 # 更改默认 Shell 为 zsh
 # sed -i 's/\/bin\/ash/\/usr\/bin\/zsh/g' package/base-files/files/etc/passwd
@@ -125,8 +125,8 @@ sed -i "s/OpenWrt /FlyStation $(TZ=UTC-8 date "+%Y.%m.%d") @ OpenWrt /g" $ZZZ   
 sed -i '/CYXluq4wUazHjmCDBCqXF/d' $ZZZ                                                 # 设置密码为空
 sed -i "/uci commit system/i\uci set system.@system[0].hostname='FlyStation'" $ZZZ     # 修改主机名称为FlyStation
 
-sed -i 's/192.168.1.1/192.168.2.254/g' package/base-files/image-config.in
-sed -i 's/192.168.1.255/192.168.2.255/g' package/base-files/image-config.in
+sed -i 's/192.168.1.1/10.0.0.254/g' package/base-files/image-config.in
+sed -i 's/192.168.1.255/10.0.0.255/g' package/base-files/image-config.in
 chmod 755 package/luci-app-rebootschedule/root/etc/init.d/rebootschedule
 
 sed -i '7d' package/luci-app-rebootschedule/luasrc/controller/rebootschedule.lua
