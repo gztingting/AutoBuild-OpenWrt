@@ -19,7 +19,7 @@ ZZZ="package/lean/default-settings/files/zzz-default-settings"
 #sed -i "/uci commit network/i\uci set network.lan.delegate='0'" $ZZZ
 #echo "close_dhcp" > package/base-files/files/etc/closedhcp
 
-sed -i 's/luci-theme-bootstrap/luci-theme-argon-dark-mod/g' feeds/luci/collections/luci/Makefile                  # 选择argon为默认主题
+sed -i 's/luci-theme-bootstrap/luci-theme-argon/g' feeds/luci/collections/luci/Makefile                  # 选择argon为默认主题
 #sed -i 's/京东签到服务/JD-DailyBonus/g' package/lean/luci-app-jd-dailybonus/luasrc/controller/jd-dailybonus.lua    #修改京东签到中文为英文
 
 sed -i 's/luci.main.lang=zh_cn/luci.main.lang=en_us/g' $ZZZ                            # 修改为英文系统
@@ -27,8 +27,8 @@ sed -i "s/OpenWrt /FlyStation $(TZ=UTC-8 date "+%Y.%m.%d") @ OpenWrt /g" $ZZZ   
 sed -i '/CYXluq4wUazHjmCDBCqXF/d' $ZZZ                                                 # 设置密码为空
 sed -i "/uci commit system/i\uci set system.@system[0].hostname='FlyStation'" $ZZZ     # 修改主机名称为FlyStation
 
-sed -i 's/192.168.1.1/192.168.50.1/g' package/base-files/image-config.in
-sed -i 's/192.168.1.255/192.168.50.255/g' package/base-files/image-config.in
+sed -i 's/192.168.1.1/192.168.2.150/g' package/base-files/image-config.in
+sed -i 's/192.168.1.255/192.168.2.255/g' package/base-files/image-config.in
 #sed -i "/CONFIG_DUMMY_CONSOLE=y/a\CONFIG_64BIT=y" target/linux/x86/config-5.10 #增加i915显卡
 #sed -i "/CONFIG_64BIT=y/i\CONFIG_DRM=y" target/linux/x86/config-5.10
 #sed -i "/CONFIG_64BIT=y/i\CONFIG_DRM_I915=y" target/linux/x86/config-5.10
@@ -51,9 +51,8 @@ sed -i 's/192.168.1.255/192.168.50.255/g' package/base-files/image-config.in
 
 #sed -i 's/=0.4.0/=0.4.7/g' package/lean/aliyundrive-webdav/Makefile #升级到最新版本
 #chmod 755 package/lean/luci-app-autotimeset/root/etc/init.d/autotimeset
-chmod 755 package/lean/luci-app-rebootschedule/root/etc/init.d/rebootschedule
-
-sed -i '7d' package/lean/luci-app-rebootschedule/luasrc/controller/rebootschedule.lua
-sed -i 's/"control"/"system"/g' package/lean/luci-app-rebootschedule/luasrc/controller/rebootschedule.lua #move to system entry
+sed -i 's/"control"/"system"/g' feeds/luci/applications/luci-app-rebootschedule/luasrc/controller/rebootschedule.lua #move to system entry
+chmod 755 feeds/luci/applications/luci-app-rebootschedule/root/etc/init.d/rebootschedule
+sed -i '7d' feeds/luci/applications/luci-app-rebootschedule/luasrc/controller/rebootschedule.lua
 #sed -i 's/services/nas/g' package/lean/luci-app-aliyundrive-webdav/luasrc/controller/aliyundrive-webdav.lua #move to nas entry
 #sed -i 's/文件助手/File Assistant/g' package/lean/luci-app-fileassistant/luasrc/controller/fileassistant.lua
