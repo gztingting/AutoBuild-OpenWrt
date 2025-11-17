@@ -14,15 +14,16 @@
 
 #rm -R ./feeds/luci/applications/luci-app-aliyundrive-webdav
 
-pushd package/lean
-git clone https://github.com/gztingting/luci-theme-argon-dark-mod
+pushd feeds/luci/applications
+#git clone https://github.com/gztingting/luci-theme-argon-dark-mod
 #git clone https://github.com/kenzok8/luci-theme-ifit
+git clone https://github.com/sirpdboy/luci-theme-kucat
 git clone https://github.com/DevOpenWRT-Router/luci-app-rebootschedule
 git clone https://github.com/gztingting/luci-app-fileassistant
 #svn co https://github.com/Lienol/openwrt-package/trunk/luci-app-fileassistant
 #svn co https://github.com/kenzok8/openwrt-packages/trunk/luci-app-aliyundrive-webdav
 #svn co https://github.com/281677160/openwrt-package/tree/lede/cdnspeedtest
-#svn co https://github.com/281677160/openwrt-package/tree/lede/luci-app-cloudflarespeedtest
+svn co https://github.com/281677160/openwrt-package/tree/lede/luci-app-cloudflarespeedtest
 #svn co https://github.com/281677160/openwrt-package/tree/lede/alist
 #svn co https://github.com/281677160/openwrt-package/tree/lede/luci-app-alist
 #svn co https://github.com/281677160/openwrt-package/tree/lede/syncthing
